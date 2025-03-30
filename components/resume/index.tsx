@@ -3,16 +3,25 @@ import { ResumeHeader } from "./ResumeHeader";
 import { Section } from "./Section";
 import { ResumeFooter } from "./ResumeFooter";
 import { Exists } from "../Exists";
-import styles from "@styles/resume.module.scss"
+import defaultStyles from "@styles/resume.module.scss";
+
+type Theme = 'default';
 
 type Props = {
   resume: Resume;
   order?: string[];
+  theme?: Theme;
 };
 
-const Resume: FC<Props> = ({ resume, order = defaultOrder }) => {
+const themeStyles: Record<Theme, any> = {
+  default: defaultStyles
+};
+
+const Resume: FC<Props> = ({ resume, order = defaultOrder, theme = 'default' }) => {
   const keys = Object.keys(resume);
   const result = order.filter((e) => keys.includes(e));
+  const styles = themeStyles[theme];
+
   return (
     <section className={styles["resume-page"]}>
       <Exists exists={keys}>

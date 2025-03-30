@@ -1,3 +1,57 @@
+# JSON Resume Service
+
+A service that renders JSON Resume data using various themes. Built with Next.js and TypeScript.
+
+## Available Themes
+
+- elegant
+- paper
+- stackoverflow
+- classy
+- macchiato
+- kendall
+- americano
+- actual
+- reactive
+- engineering
+- caffeine
+- business-professional-compact
+- papirus
+- srt
+
+## Usage
+
+1. Host your resume data as a JSON file following the [JSON Resume schema](https://jsonresume.org/schema/)
+2. Use the following URL format to render your resume:
+
+```
+https://your-vercel-domain.vercel.app/render?url=YOUR_JSON_URL&theme=THEME_NAME
+```
+
+Example:
+```
+https://your-vercel-domain.vercel.app/render?url=https://example.com/resume.json&theme=elegant
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+## License
+
+MIT
 
 <div align="center">
  <table>
