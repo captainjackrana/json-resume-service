@@ -11,9 +11,11 @@ import americano from 'jsonresume-theme-americano';
 import actual from 'jsonresume-theme-actual';
 import * as reactive from 'jsonresume-theme-reactive';
 import engineering from 'jsonresume-theme-engineering';
+import * as xfigrEngineering from './themes/engineering';
 import caffeine from 'jsonresume-theme-caffeine';
 import businessProfessionalCompact from 'jsonresume-theme-business-professional-compact';
 import papirus from 'jsonresume-theme-papirus';
+import * as xfigrBasic from './themes/custom';
 
 //https://gist.github.com/asbjornu/7873be2713fcacc911be2035a482091d
 // Theme registry
@@ -31,6 +33,8 @@ const themes: Record<string, (resume: ResumeSchema) => string> = {
   caffeine: caffeine.render,
   'business-professional-compact': businessProfessionalCompact.render,
   papirus: papirus.render,
+  'xfigr-basic': xfigrBasic.render,
+  'xfigr-engineering': xfigrEngineering.render,
 };
 
 export function renderWithTheme(themeName: string, resume: ResumeSchema): string {
