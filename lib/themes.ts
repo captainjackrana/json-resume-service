@@ -16,7 +16,7 @@ import caffeine from 'jsonresume-theme-caffeine';
 import businessProfessionalCompact from 'jsonresume-theme-business-professional-compact';
 import papirus from 'jsonresume-theme-papirus';
 import * as xfigrBasic from './themes/custom';
-
+import * as xfigrPapirus from './themes/papirus';
 //https://gist.github.com/asbjornu/7873be2713fcacc911be2035a482091d
 // Theme registry
 const themes: Record<string, (resume: ResumeSchema) => string> = {
@@ -33,6 +33,7 @@ const themes: Record<string, (resume: ResumeSchema) => string> = {
   caffeine: caffeine.render,
   'business-professional-compact': businessProfessionalCompact.render,
   papirus: papirus.render,
+  'xfigr-papirus': xfigrPapirus.render,
   'xfigr-basic': xfigrBasic.render,
   'xfigr-engineering': xfigrEngineering.render,
 };

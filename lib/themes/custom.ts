@@ -68,17 +68,17 @@ const template = (resume: ResumeSchema): string => {
         
         .header {
           text-align: center;
-          margin-bottom: 30px;
+          margin-bottom: 20px;
         }
         
         h1 {
-          margin: 0;
+          margin: 0 0 5px 0;
           color: #2c3e50;
           font-size: 36px;
         }
         
         .contact-info {
-          margin: 15px 0;
+          margin: 5px 0;
           color: #7f8c8d;
           display: flex;
           justify-content: center;
@@ -144,11 +144,11 @@ const template = (resume: ResumeSchema): string => {
         }
         
         .skill-item {
-          background: #f0f3f7;
           padding: 5px 10px;
           border-radius: 3px;
           font-size: 14px;
           color: #2c3e50;
+          font-weight: bold;
         }
         
         .skill-keywords {
@@ -159,11 +159,12 @@ const template = (resume: ResumeSchema): string => {
         }
         
         .skill-keyword {
-          background: #e8f0fe;
+          background: #f0f3f7;
           padding: 3px 8px;
           border-radius: 3px;
           font-size: 12px;
-          color: #3498db;
+          font-weight: normal;
+          color: #2c3e50;
         }
         
         .languages-list {
@@ -183,15 +184,15 @@ const template = (resume: ResumeSchema): string => {
         .interests-list {
           display: flex;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 8px;
         }
         
         .interest-item {
-          background: #f0f3f7;
           padding: 5px 10px;
           border-radius: 3px;
           font-size: 14px;
           color: #2c3e50;
+          font-weight: bold;
         }
         
         .interest-keywords {
@@ -202,11 +203,12 @@ const template = (resume: ResumeSchema): string => {
         }
         
         .interest-keyword {
-          background: #e8f0fe;
+          background: #f0f3f7;
           padding: 3px 8px;
           border-radius: 3px;
           font-size: 12px;
-          color: #3498db;
+          font-weight: normal;
+          color: #2c3e50;
         }
         
         .reference-item {
@@ -235,6 +237,10 @@ const template = (resume: ResumeSchema): string => {
         li {
           margin-bottom: 3px;
         }
+        
+        .entry p {
+          margin: 5px 0;
+        }
       </style>
     </head>
     <body>
@@ -258,6 +264,7 @@ const template = (resume: ResumeSchema): string => {
                 </span>
               </div>
               <div class="entry-subtitle">${job.name || ''}</div>
+              ${job.summary ? `<p>${job.summary}</p>` : ''}
               ${job.highlights?.length ? `
                 <ul>
                   ${job.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
@@ -345,12 +352,12 @@ const template = (resume: ResumeSchema): string => {
       ` : ''}
 
       ${skills?.length ? `
-        <div class="section">
+        <section id="skills">
           <h2>Skills</h2>
           <div class="skills-list">
             ${skills.map(skill => `
               <div class="skill-item">
-                ${skill.name}
+                ${skill.name || ''}
                 ${skill.keywords?.length ? `
                   <div class="skill-keywords">
                     ${skill.keywords.map(keyword => `
@@ -361,7 +368,7 @@ const template = (resume: ResumeSchema): string => {
               </div>
             `).join('')}
           </div>
-        </div>
+        </section>
       ` : ''}
 
       ${languages?.length ? `
