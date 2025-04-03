@@ -263,7 +263,7 @@ const template = (resume: ResumeSchema): string => {
                   ${formatDate(job.startDate)} - ${job.endDate ? formatDate(job.endDate) : 'Present'}
                 </span>
               </div>
-              <div class="entry-subtitle">${job.name || ''}</div>
+              <div class="entry-subtitle">${job.name || ''}${job.location ? ` - ${job.location}` : ''}</div>
               ${job.summary ? `<p>${job.summary}</p>` : ''}
               ${job.highlights?.length ? `
                 <ul>

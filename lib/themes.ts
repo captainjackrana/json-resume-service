@@ -16,6 +16,7 @@ import businessProfessionalCompact from 'jsonresume-theme-business-professional-
 import papirus from 'jsonresume-theme-papirus';
 import * as xfigrBasic from './themes/custom';
 import * as xfigrPapirus from './themes/papirus';
+import * as xfigrMacchiato from './themes/macchiato';
 //https://gist.github.com/asbjornu/7873be2713fcacc911be2035a482091d
 // Theme registry
 const themes: Record<string, (resume: ResumeSchema) => string> = {
@@ -23,7 +24,7 @@ const themes: Record<string, (resume: ResumeSchema) => string> = {
   paper: paper.render,
   stackoverflow: stackoverflow.render,
   classy: classy.render,
-  macchiato: macchiato.render,
+  macchiato: xfigrMacchiato.render,
   kendall: kendall.render,
   americano: americano.render,
   actual: actual.render,
