@@ -17,6 +17,7 @@ import papirus from 'jsonresume-theme-papirus';
 import * as xfigrBasic from './themes/custom';
 import * as xfigrPapirus from './themes/papirus';
 import * as xfigrMacchiato from './themes/macchiato';
+import * as xfigrMin from './themes/xfigr-min';
 //https://gist.github.com/asbjornu/7873be2713fcacc911be2035a482091d
 // Theme registry
 const themes: Record<string, (resume: ResumeSchema) => string> = {
@@ -35,6 +36,7 @@ const themes: Record<string, (resume: ResumeSchema) => string> = {
   papirus: papirus.render,
   'xfigr-papirus': xfigrPapirus.render,
   'xfigr-basic': xfigrBasic.render,
+  'xfigr-min': xfigrMin.render,
 };
 
 export function renderWithTheme(themeName: string, resume: ResumeSchema): string {
