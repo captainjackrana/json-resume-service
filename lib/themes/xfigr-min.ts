@@ -103,8 +103,12 @@ const template = (resume: ResumeSchema): string => {
           margin-bottom: 8px;
           justify-content: center;
         }
-        .contact-item {
+        .contact-row a {
           color: #3681b8;
+          text-decoration: none;
+        }
+        .contact-item {
+          // color: #3681b8;
           text-decoration: none;
         }
         .contact-item .icon {
