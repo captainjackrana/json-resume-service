@@ -235,7 +235,12 @@ const template = (resume: ResumeSchema): string => {
         <div class="contact-row">
           ${contactInfo}
         </div>
-        ${basics?.summary ? `<div class="summary">${basics.summary}</div>` : ''}
+        ${basics?.summary ? `
+          <div class="section">
+            <div class="section-title">Summary</div>
+            <div class="summary">${basics.summary}</div>
+          </div>
+        ` : ''}
         ${work?.length ? `
           <div class="section">
             <div class="section-title">Professional Experience</div>
