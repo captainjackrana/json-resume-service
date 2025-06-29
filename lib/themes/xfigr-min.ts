@@ -26,6 +26,11 @@ const template = (resume: ResumeSchema): string => {
   if(education) {
     education.forEach(processEducation);
   }
+  if(work){
+    work.forEach(job => {
+      job.name = job.name || (job.company as string);
+    });
+  }
 
   // Compact contact info row
   const contactInfo = [
@@ -51,7 +56,7 @@ const template = (resume: ResumeSchema): string => {
       };
       
       const icon = iconMap[network] || 'fa-globe';
-      const displayText = profile.username || profile.url || network;
+      const displayText = profile.username || network || profile.url;
       
       return `<a href="${profile.url}" class="contact-item" target="_blank"><i class='fa ${icon} icon'></i>${displayText}</a>`;
     }) || []),
@@ -72,9 +77,6 @@ const template = (resume: ResumeSchema): string => {
           color: #222;
           margin: 0;
           padding: 0;
-        }
-        a {
-          color: #3681b8;
         }
         .container {
           max-width: 800px;
@@ -102,7 +104,7 @@ const template = (resume: ResumeSchema): string => {
           justify-content: center;
         }
         .contact-item {
-          // color: #3681b8;
+          color: #3681b8;
           text-decoration: none;
         }
         .contact-item .icon {
@@ -142,6 +144,12 @@ const template = (resume: ResumeSchema): string => {
           font-style: italic;
           color: #555;
           font-size: 0.98rem;
+        }
+        .exp-summary {
+          color: #444;
+          font-size: 0.95rem;
+          margin: 2px 0;
+          line-height: 1.4;
         }
         .date, .exp-date, .edu-date, .award-date, .pub-date, .cert-date, .proj-date, .vol-date {
           color: #888;
@@ -227,12 +235,7 @@ const template = (resume: ResumeSchema): string => {
         <div class="contact-row">
           ${contactInfo}
         </div>
-        ${basics?.summary ? `
-          <div class="section">
-            <div class="section-title">Summary</div>
-            <div class="summary">${basics.summary}</div>
-          </div>
-        ` : ''}
+        ${basics?.summary ? `<div class="summary">${basics.summary}</div>` : ''}
         ${work?.length ? `
           <div class="section">
             <div class="section-title">Professional Experience</div>
@@ -243,6 +246,7 @@ const template = (resume: ResumeSchema): string => {
                   <span class="exp-date">${formatDateRange(job.startDate, job.endDate, true)}</span>
                 </div>
                 ${job.location ? `<div class="exp-org">${job.location}</div>` : ''}
+                ${job.summary ? `<div class="exp-summary">${job.summary}</div>` : ''}
                 ${job.highlights?.length ? `
                   <ul class="exp-highlights">
                     ${job.highlights.map(h => `<li>${h}</li>`).join('')}
@@ -276,7 +280,7 @@ const template = (resume: ResumeSchema): string => {
             ` : `
               <div>
                 ${skills.map(skill => `
-                  <div><b>${skill.name || ''}:</b>${skill.keywords?.length ? `&nbsp;&nbsp;${skill.keywords.join(', ')}` : ''}</div>
+                  <div><b>${skill.name || ''}:</b>${skill.keywords?.length ? `&nbsp;&nbsp;&nbsp;&nbsp;${skill.keywords.join(', ')}` : ''}</div>
                 `).join('')}
               </div>
             `}
