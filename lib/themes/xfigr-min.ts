@@ -61,11 +61,26 @@ const template = (resume: ResumeSchema): string => {
       return `<a href="${profile.url}" class="contact-item" target="_blank"><i class='fa ${icon} icon'></i>${displayText}</a>`;
     }) || []),
     basics?.location && (() => {
-      const locationParts = [
-        basics.location.address,
-        basics.location.region,
-        basics.location.city
-      ].filter(Boolean);
+      const locationParts = [];
+      
+      // Add address if available
+      if (basics.location.address) {
+        locationParts.push(basics.location.address);
+      }
+      
+      // Add region only if not already in address
+      if (basics.location.region && (!basics.location.address || !basics.location.address.toLowerCase().includes(basics.location.region.toLowerCase()))) {
+        locationParts.push(basics.location.region);
+      }
+      
+      // Add city only if not already in address or region
+      if (basics.location.city) {
+        const addressAndRegion = [basics.location.address, basics.location.region].filter(Boolean).join(' ').toLowerCase();
+        if (!addressAndRegion.includes(basics.location.city.toLowerCase())) {
+          locationParts.push(basics.location.city);
+        }
+      }
+      
       return locationParts.length > 0 ? `<span class="contact-item">${locationParts.join(', ')}</span>` : null;
     })()
   ].filter(Boolean).join(' <span class="sep">|</span> ');
