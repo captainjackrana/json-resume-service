@@ -60,7 +60,14 @@ const template = (resume: ResumeSchema): string => {
       
       return `<a href="${profile.url}" class="contact-item" target="_blank"><i class='fa ${icon} icon'></i>${displayText}</a>`;
     }) || []),
-    basics?.location?.city && `<span class="contact-item">${basics.location.city}</span>`
+    basics?.location && (() => {
+      const locationParts = [
+        basics.location.address,
+        basics.location.region,
+        basics.location.city
+      ].filter(Boolean);
+      return locationParts.length > 0 ? `<span class="contact-item">${locationParts.join(', ')}</span>` : null;
+    })()
   ].filter(Boolean).join(' <span class="sep">|</span> ');
 
   return `
@@ -150,6 +157,12 @@ const template = (resume: ResumeSchema): string => {
           font-size: 0.98rem;
         }
         .exp-summary {
+          color: #444;
+          font-size: 0.95rem;
+          margin: 2px 0;
+          line-height: 1.4;
+        }
+        .cert-summary {
           color: #444;
           font-size: 0.95rem;
           margin: 2px 0;
@@ -320,6 +333,7 @@ const template = (resume: ResumeSchema): string => {
                   <span class="cert-date">${formatDate(cert.date)}</span>
                 </div>
                 <div class="cert-org">${cert.issuer || ''}</div>
+                ${cert.summary ? `<div class="cert-summary">${cert.summary}</div>` : ''}
               </div>
             `).join('')}
           </div>
