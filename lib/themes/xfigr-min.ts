@@ -2,6 +2,17 @@ import type { ResumeSchema } from '../../types/json-resume';
 
 const template = (resume: ResumeSchema): string => {
   const { basics, work, education, skills, awards, publications, certificates, projects, volunteer, languages, interests, references } = resume;
+  
+  // Random font selection
+  const fonts = [
+    "'Segoe UI', Arial, sans-serif",
+    "Verdana, 'Segoe UI', Arial, sans-serif"
+  ];
+  const selectedFont = fonts[Math.floor(Math.random() * fonts.length)];
+  
+  // Random social network display preference
+  const useNetworkName = Math.random() < 0.5;
+  
   // Helper function to format dates
   const formatDate = (date?: string) => {
     if (!date) return '';
@@ -56,7 +67,7 @@ const template = (resume: ResumeSchema): string => {
       };
       
       const icon = iconMap[network] || 'fa-globe';
-      const displayText = profile.username || network || profile.url;
+      const displayText = useNetworkName ? (network || profile.url) : (profile.username || network || profile.url);
       
       return `<a href="${profile.url}" class="contact-item" target="_blank"><i class='fa ${icon} icon'></i>${displayText}</a>`;
     }) || []),
@@ -94,7 +105,7 @@ const template = (resume: ResumeSchema): string => {
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <style>
         body {
-          font-family: 'Segoe UI', Arial, sans-serif;
+          font-family: ${selectedFont};
           background: #fff;
           color: #222;
           margin: 0;
@@ -317,7 +328,7 @@ const template = (resume: ResumeSchema): string => {
             ` : `
               <div>
                 ${skills.map(skill => `
-                  <div><b>${skill.name || ''}:</b>${skill.keywords?.length ? `&nbsp;&nbsp;&nbsp;&nbsp;${skill.keywords.join(', ')}` : ''}</div>
+                  <div><b>${skill.name || ''}:</b>${skill.keywords?.length ? `&nbsp;&nbsp;${skill.keywords.join(', ')}` : ''}</div>
                 `).join('')}
               </div>
             `}
@@ -405,7 +416,7 @@ const template = (resume: ResumeSchema): string => {
             ` : `
               <div>
                 ${languages.map(lang => `
-                  <div><b>${lang.language || ''}${lang.fluency ? ':</b>&nbsp;&nbsp;&nbsp;&nbsp;' + lang.fluency : '</b>'}</div>
+                  <div><b>${lang.language || ''}${lang.fluency ? ':</b>&nbsp;&nbsp;' + lang.fluency : '</b>'}</div>
                 `).join('')}
               </div>
             `}
@@ -419,7 +430,7 @@ const template = (resume: ResumeSchema): string => {
             ` : `
               <div>
                 ${interests.map(interest => `
-                  <div><b>${interest.name || ''}${interest.keywords?.length ? ':</b>&nbsp;&nbsp;&nbsp;&nbsp;' + interest.keywords.join(', ') : '</b>'}</div>
+                  <div><b>${interest.name || ''}${interest.keywords?.length ? ':</b>&nbsp;&nbsp;' + interest.keywords.join(', ') : '</b>'}</div>
                 `).join('')}
               </div>
             `}
