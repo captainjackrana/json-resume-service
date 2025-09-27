@@ -110,6 +110,7 @@ const template = (resume: ResumeSchema): string => {
           color: #222;
           margin: 0;
           padding: 0;
+          font-size: 0.9rem;
         }
         .container {
           max-width: 800px;
@@ -121,14 +122,14 @@ const template = (resume: ResumeSchema): string => {
           margin-bottom: 2px;
         }
         .header h1 {
-          font-size: 2.1rem;
+          font-size: 1.89rem;
           font-weight: 700;
           margin: 0 0 2px 0;
           letter-spacing: 1px;
         }
         .contact-row {
           text-align: center;
-          font-size: 0.98rem;
+          font-size: 0.88rem;
           color: #444;
           display: flex;
           flex-wrap: wrap;
@@ -154,10 +155,10 @@ const template = (resume: ResumeSchema): string => {
         .summary {
           margin-bottom: 10px;
           color: #444;
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
         .section-title {
-          font-size: 1.05rem;
+          font-size: 0.945rem;
           font-weight: bold;
           letter-spacing: 1px;
           text-transform: uppercase;
@@ -175,28 +176,28 @@ const template = (resume: ResumeSchema): string => {
         }
         .role, .exp-role, .edu-title, .award-title, .pub-title, .cert-title, .proj-title, .vol-title {
           font-weight: 600;
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
         .org, .exp-org, .edu-org, .award-org, .pub-org, .cert-org, .proj-org, .vol-org {
           font-style: italic;
           color: #555;
-          font-size: 0.98rem;
+          font-size: 0.88rem;
         }
         .exp-summary {
           color: #444;
-          font-size: 0.95rem;
+          font-size: 0.855rem;
           margin: 2px 0;
           line-height: 1.4;
         }
         .cert-summary {
           color: #444;
-          font-size: 0.95rem;
+          font-size: 0.855rem;
           margin: 2px 0;
           line-height: 1.4;
         }
         .date, .exp-date, .edu-date, .award-date, .pub-date, .cert-date, .proj-date, .vol-date {
           color: #888;
-          font-size: 0.95rem;
+          font-size: 0.855rem;
           margin-left: 10px;
           white-space: nowrap;
         }
@@ -214,7 +215,7 @@ const template = (resume: ResumeSchema): string => {
         }
         .skill-item {
           color: #222;
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
         .skill-keywords {
           display: flex;
@@ -237,7 +238,7 @@ const template = (resume: ResumeSchema): string => {
           background: #f0f3f7;
           padding: 4px 10px;
           border-radius: 3px;
-          font-size: 0.98rem;
+          font-size: 0.88rem;
           color: #2c3e50;
         }
         .interest-keywords {
