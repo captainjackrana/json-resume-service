@@ -8,9 +8,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { theme = 'elegant' } = req.query;
+    const { theme = 'elegant', variations = 'false', seed = '' } = req.query;
     const resumeData = req.body as ResumeSchema;
-
+    resumeData.enableVariations = variations === 'true';
+    resumeData.variationSeed = seed;
     const html = renderWithTheme(theme as string, resumeData);
     
     res.setHeader('Content-Type', 'text/html');
