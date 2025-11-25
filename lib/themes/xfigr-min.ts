@@ -243,9 +243,15 @@ const template = (resume: ResumeSchema): string => {
       
       const icon = iconMap[network] || 'fa-globe';
       
+      // Check if URL contains special characters
+      const hasSpecialChars = /[%&?=#+@]/.test(profile.url);
+      
       // Determine display text based on variations
       let displayText;
-      if (vars.useFullUrlsAndNoBlueLinks && (network === 'linkedin' || network === 'github')) {
+      if (hasSpecialChars && (network === 'linkedin' || network)) {
+        // If URL has special characters, show just the network name
+        displayText = network || 'Social';
+      } else if (vars.useFullUrlsAndNoBlueLinks && (network === 'linkedin' || network === 'github')) {
         // Show full URL for LinkedIn and GitHub when this variation is active
         displayText = profile.url;
       } else if (vars.useNetworkName) {
@@ -460,6 +466,23 @@ const template = (resume: ResumeSchema): string => {
           font-style: italic;
         }
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+        @media print {
+          .section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+            orphans: 3;
+            widows: 3;
+          }
+          .section-title {
+            page-break-after: avoid;
+            break-after: avoid;
+          }
+          .exp-entry, .edu-entry, .award-entry, .pub-entry, 
+          .cert-entry, .proj-entry, .vol-entry {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+        }
       </style>
     </head>
     <body>
