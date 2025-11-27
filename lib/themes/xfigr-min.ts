@@ -395,7 +395,7 @@ const template = (resume: ResumeSchema): string => {
         }
         .highlights, .exp-highlights, .proj-highlights, .vol-highlights, .pub-highlights {
           margin: ${2 * vars.spacingMultiplier}px 0 0 0;
-          padding-left: ${30 * vars.spacingMultiplier}px;
+          padding-left: ${15 * vars.spacingMultiplier}px;
           list-style: none;
         }
         .highlights li, .exp-highlights li, .proj-highlights li, .vol-highlights li, .pub-highlights li {
