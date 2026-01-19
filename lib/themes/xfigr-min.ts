@@ -473,6 +473,10 @@ const template = (resume: ResumeSchema): string => {
             orphans: 3;
             widows: 3;
           }
+          .section:has(.exp-entry), .section:has(.edu-entry) {
+            page-break-inside: auto;
+            break-inside: auto;
+          }
           .section-title {
             page-break-after: avoid;
             break-after: avoid;
